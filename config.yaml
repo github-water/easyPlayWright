@@ -1,0 +1,20 @@
+browser:
+  type: chromium        # chromium | firefox | webkit
+  headless: false
+  slow_mo: 0
+  timeout: 30000
+  viewport:
+    width: 1920
+    height: 1080
+  # 登录态文件路径（运行 tools/save_login_state.py 生成）
+  # 设置后自动携带 Cookie，无需重复登录
+  storage_state: ""     # 例如: output/qwen_state.json
+
+output:
+  screenshot_dir: output/screenshots
+  log_dir: output/logs
+
+log:
+  level: INFO
+  rotation: "10 MB"
+  retention: "7 days"

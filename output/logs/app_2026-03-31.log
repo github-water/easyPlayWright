@@ -1,0 +1,245 @@
+2026-03-31 11:16:12 | INFO     | __main__:16 - === easyPlayWright 启动 ===
+2026-03-31 11:16:12 | INFO     | api.newsflash_api:40 - [API] fetch_36kr 调用，scroll_times=3, fmt=json
+2026-03-31 11:16:12 | INFO     | adapter.browser:27 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 11:17:17 | INFO     | __main__:16 - === easyPlayWright 启动 ===
+2026-03-31 11:17:17 | INFO     | api.newsflash_api:40 - [API] fetch_36kr 调用，scroll_times=3, fmt=json
+2026-03-31 11:17:17 | INFO     | adapter.browser:27 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 11:17:19 | INFO     | domain.kr36.newsflash:47 - [Domain] 打开 36kr 快讯页: https://www.36kr.com/newsflashes/catalog/0
+2026-03-31 11:17:19 | INFO     | domain.kr36.newsflash:50 - [Domain] 页面加载完成，开始滚动
+2026-03-31 11:17:23 | INFO     | domain.kr36.newsflash:61 - [Domain] 开始提取快讯数据
+2026-03-31 11:17:23 | INFO     | component.scraper:39 - [Component] 共找到 40 个列表项
+2026-03-31 11:17:24 | INFO     | domain.kr36.newsflash:69 - [Domain] 共提取 40 条快讯
+2026-03-31 11:17:24 | INFO     | component.exporter:29 - [Component] 已导出 JSON: output\36kr_newsflash.json (共 40 条)
+2026-03-31 11:17:24 | INFO     | adapter.browser:50 - [Adapter] 浏览器已关闭
+2026-03-31 11:17:24 | INFO     | api.newsflash_api:49 - [API] fetch_36kr 完成，返回 40 条数据
+2026-03-31 11:17:24 | INFO     | __main__:21 - 任务完成，共抓取 40 条数据，结果保存至 output/
+2026-03-31 11:17:24 | INFO     | __main__:25 - [1] None | 1分钟前 | https://www.36kr.com/newsflashes/3746283121361666
+2026-03-31 11:17:24 | INFO     | __main__:25 - [2] None | 12分钟前 | https://www.36kr.com/newsflashes/3746265418809857
+2026-03-31 11:17:24 | INFO     | __main__:25 - [3] None | 16分钟前 | https://www.36kr.com/newsflashes/3746267838530056
+2026-03-31 11:17:24 | INFO     | __main__:25 - [4] None | 17分钟前 | https://www.36kr.com/newsflashes/3746251019895304
+2026-03-31 11:17:24 | INFO     | __main__:25 - [5] None | 24分钟前 | https://www.36kr.com/newsflashes/3746260323910151
+2026-03-31 11:18:18 | INFO     | __main__:16 - === easyPlayWright 启动 ===
+2026-03-31 11:18:18 | INFO     | api.newsflash_api:40 - [API] fetch_36kr 调用，scroll_times=3, fmt=json
+2026-03-31 11:18:18 | INFO     | adapter.browser:27 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 11:18:19 | INFO     | domain.kr36.newsflash:47 - [Domain] 打开 36kr 快讯页: https://www.36kr.com/newsflashes/catalog/0
+2026-03-31 11:18:20 | INFO     | domain.kr36.newsflash:50 - [Domain] 页面加载完成，开始滚动
+2026-03-31 11:18:24 | INFO     | domain.kr36.newsflash:61 - [Domain] 开始提取快讯数据
+2026-03-31 11:18:24 | INFO     | component.scraper:39 - [Component] 共找到 40 个列表项
+2026-03-31 11:18:26 | INFO     | domain.kr36.newsflash:69 - [Domain] 共提取 40 条快讯
+2026-03-31 11:18:26 | INFO     | component.exporter:29 - [Component] 已导出 JSON: output\36kr_newsflash.json (共 40 条)
+2026-03-31 11:18:26 | INFO     | adapter.browser:50 - [Adapter] 浏览器已关闭
+2026-03-31 11:18:26 | INFO     | api.newsflash_api:49 - [API] fetch_36kr 完成，返回 40 条数据
+2026-03-31 11:18:26 | INFO     | __main__:21 - 任务完成，共抓取 40 条数据，结果保存至 output/
+2026-03-31 11:18:26 | INFO     | __main__:25 - [1] 创业板指跌超2% | 2分钟前 | https://www.36kr.com/newsflashes/3746283121361666
+2026-03-31 11:18:26 | INFO     | __main__:25 - [2] 韩国2月免税店销售额下滑 | 13分钟前 | https://www.36kr.com/newsflashes/3746265418809857
+2026-03-31 11:18:26 | INFO     | __main__:25 - [3] 美国太空探索技术公司一颗“星链”卫星失联 | 17分钟前 | https://www.36kr.com/newsflashes/3746267838530056
+2026-03-31 11:18:26 | INFO     | __main__:25 - [4] MOVA推出两款智能眼镜 | 18分钟前 | https://www.36kr.com/newsflashes/3746251019895304
+2026-03-31 11:18:26 | INFO     | __main__:25 - [5] 中兴通讯：正与字节跳动等生态伙伴深化合作，推进新一代豆包AI手机研发与落地 | 25分钟前 | https://www.36kr.com/newsflashes/3746260323910151
+2026-03-31 11:34:29 | INFO     | __main__:20 - ===== 示例一：单轮文本对话 =====
+2026-03-31 11:34:29 | INFO     | api.chat_api:43 - [API][Chat] text_chat，model=qwen
+2026-03-31 11:34:29 | INFO     | adapter.browser:27 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 11:34:30 | INFO     | domain.llm.chat_domain:51 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 11:34:30 | INFO     | component.chat:34 - [Component][Chat] 初始化对话
+2026-03-31 11:34:30 | INFO     | adapter.llm.qwen:41 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 11:35:02 | INFO     | adapter.browser:50 - [Adapter] 浏览器已关闭
+2026-03-31 11:39:26 | INFO     | __main__:70 - 打开页面: https://chat.qwen.ai/
+2026-03-31 11:39:31 | INFO     | __main__:77 - ============================================================
+2026-03-31 11:39:31 | INFO     | __main__:78 - 开始探测选择器命中情况
+2026-03-31 11:39:31 | INFO     | __main__:79 - ============================================================
+2026-03-31 11:39:31 | INFO     | __main__:83 - 
+【input（输入框）】
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  #search-input-box textarea
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ✅ 命中 1 个  ->  textarea
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [contenteditable='true']
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .input-box textarea
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  div[contenteditable]
+2026-03-31 11:39:31 | INFO     | __main__:83 - 
+【send_btn（发送按钮）】
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  button#send-btn
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  button[type='submit']
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .send-button
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  button.submit
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [aria-label='发送']
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [aria-label='Send']
+2026-03-31 11:39:31 | INFO     | __main__:83 - 
+【last_response（AI回复）】
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .message-content.active .md-content
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .chat-ai-message-item .md-content
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .ai-message .content
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .message-item.assistant .content
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [data-role='assistant'] .content
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .markdown-body
+2026-03-31 11:39:31 | INFO     | __main__:83 - 
+【loading（加载指示器）】
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .chat-ai-message-item .loading-dots
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .loading-indicator
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .typing-indicator
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [class*='loading']
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [class*='typing']
+2026-03-31 11:39:31 | INFO     | __main__:83 - 
+【new_chat（新建对话）】
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  button.new-chat-btn
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [aria-label='新建对话']
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  [title='新建对话']
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  button[class*='new']
+2026-03-31 11:39:31 | INFO     | __main__:89 -   ❌ 未命中  ->  .sidebar button:first-child
+2026-03-31 11:39:31 | INFO     | __main__:96 - 
+============================================================
+2026-03-31 11:39:31 | INFO     | __main__:97 - 推荐选择器汇总：
+2026-03-31 11:39:31 | INFO     | __main__:98 - ============================================================
+2026-03-31 11:39:31 | INFO     | __main__:100 -   input（输入框）: textarea
+2026-03-31 11:39:31 | INFO     | __main__:100 -   send_btn（发送按钮）: ⚠️ 未找到，需手动确认
+2026-03-31 11:39:31 | INFO     | __main__:100 -   last_response（AI回复）: ⚠️ 未找到，需手动确认
+2026-03-31 11:39:31 | INFO     | __main__:100 -   loading（加载指示器）: ⚠️ 未找到，需手动确认
+2026-03-31 11:39:31 | INFO     | __main__:100 -   new_chat（新建对话）: ⚠️ 未找到，需手动确认
+2026-03-31 11:39:31 | INFO     | __main__:103 - 
+浏览器保持打开，按 Enter 键退出...
+2026-03-31 11:51:27 | INFO     | __main__:20 - ===== 示例一：单轮文本对话 =====
+2026-03-31 11:51:27 | INFO     | api.chat_api:43 - [API][Chat] text_chat，model=qwen
+2026-03-31 11:51:27 | INFO     | adapter.browser:27 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 11:51:35 | INFO     | domain.llm.chat_domain:51 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 11:51:35 | INFO     | component.chat:34 - [Component][Chat] 初始化对话
+2026-03-31 11:51:35 | INFO     | adapter.llm.qwen:45 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 11:51:38 | INFO     | adapter.llm.qwen:49 - [Adapter][Qwen] 页面就绪
+2026-03-31 11:51:38 | INFO     | domain.llm.chat_domain:77 - [Domain][Chat] 文本对话: 用一句话介绍你自己...
+2026-03-31 11:51:38 | INFO     | component.chat:45 - [Component][Chat] 发送: 用一句话介绍你自己...
+2026-03-31 14:09:33 | INFO     | __main__:20 - ===== 示例一：单轮文本对话 =====
+2026-03-31 14:09:33 | INFO     | api.chat_api:46 - [API][Chat] text_chat，model=qwen
+2026-03-31 14:09:33 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 14:09:41 | INFO     | domain.llm.chat_domain:51 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 14:09:41 | INFO     | component.chat:34 - [Component][Chat] 初始化对话
+2026-03-31 14:09:41 | INFO     | adapter.llm.qwen:45 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 14:09:45 | INFO     | adapter.llm.qwen:49 - [Adapter][Qwen] 页面就绪
+2026-03-31 14:09:45 | INFO     | domain.llm.chat_domain:77 - [Domain][Chat] 文本对话: 用一句话介绍你自己...
+2026-03-31 14:09:45 | INFO     | component.chat:45 - [Component][Chat] 发送: 用一句话介绍你自己...
+2026-03-31 14:10:15 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 14:13:16 | INFO     | __main__:20 - ===== 示例一：单轮文本对话 =====
+2026-03-31 14:13:16 | INFO     | api.chat_api:46 - [API][Chat] text_chat，model=qwen
+2026-03-31 14:13:16 | WARNING  | adapter.browser:40 - [Adapter] 登录态文件不存在，将以未登录状态启动: tools/output/qwen_state.json
+2026-03-31 14:13:16 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 14:13:17 | INFO     | domain.llm.chat_domain:51 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 14:13:17 | INFO     | component.chat:34 - [Component][Chat] 初始化对话
+2026-03-31 14:13:17 | INFO     | adapter.llm.qwen:45 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 14:13:20 | INFO     | adapter.llm.qwen:49 - [Adapter][Qwen] 页面就绪
+2026-03-31 14:13:20 | INFO     | domain.llm.chat_domain:77 - [Domain][Chat] 文本对话: 用一句话介绍你自己...
+2026-03-31 14:13:20 | INFO     | component.chat:45 - [Component][Chat] 发送: 用一句话介绍你自己...
+2026-03-31 14:13:52 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 14:13:55 | INFO     | __main__:20 - ===== 示例一：单轮文本对话 =====
+2026-03-31 14:13:55 | INFO     | api.chat_api:46 - [API][Chat] text_chat，model=qwen
+2026-03-31 14:13:55 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: ../tools/output/qwen_state.json
+2026-03-31 14:13:55 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 14:13:56 | INFO     | domain.llm.chat_domain:51 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 14:13:56 | INFO     | component.chat:34 - [Component][Chat] 初始化对话
+2026-03-31 14:13:56 | INFO     | adapter.llm.qwen:45 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 14:13:58 | INFO     | adapter.llm.qwen:49 - [Adapter][Qwen] 页面就绪
+2026-03-31 14:13:58 | INFO     | domain.llm.chat_domain:77 - [Domain][Chat] 文本对话: 用一句话介绍你自己...
+2026-03-31 14:13:58 | INFO     | component.chat:45 - [Component][Chat] 发送: 用一句话介绍你自己...
+2026-03-31 14:14:29 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 17:37:18 | INFO     | __main__:34 - ===== 示例二：多轮连续对话 =====
+2026-03-31 17:37:18 | INFO     | api.chat_api:83 - [API][Chat] multi_turn_chat，model=qwen，session_id=''
+2026-03-31 17:37:18 | WARNING  | adapter.browser:40 - [Adapter] 登录态文件不存在，将以未登录状态启动: output/qwen_state.json
+2026-03-31 17:37:18 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 17:37:22 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 17:37:22 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 17:37:22 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 17:37:24 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 17:37:24 | INFO     | domain.llm.chat_domain:90 - [Domain][Chat] 多轮对话，session_id=''
+2026-03-31 17:37:24 | INFO     | component.chat:37 - [Component][Chat] 发送: 使用python写一个冒泡排序
+2026-03-31 17:37:27 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 17:38:36 | INFO     | __main__:34 - ===== 示例二：多轮连续对话 =====
+2026-03-31 17:38:36 | INFO     | api.chat_api:83 - [API][Chat] multi_turn_chat，model=qwen，session_id=''
+2026-03-31 17:38:36 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: ../tools/output/qwen_state.json
+2026-03-31 17:38:36 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 17:38:38 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 17:38:38 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 17:38:38 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 17:38:40 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 17:38:40 | INFO     | domain.llm.chat_domain:90 - [Domain][Chat] 多轮对话，session_id=''
+2026-03-31 17:38:40 | INFO     | component.chat:37 - [Component][Chat] 发送: 使用python写一个冒泡排序
+2026-03-31 17:40:11 | INFO     | adapter.llm.qwen:142 - [Adapter][Qwen] 收到回复: 以下是一个用 Python 实现的冒泡排序算法，包括基础版本、优化版本、使用示例以及算法分析，帮助你全面理解该排序方法。
+1. 基础版本
+python
+1
+2
+...
+2026-03-31 17:40:11 | INFO     | component.chat:42 - [Component][Chat] 收到回复: 以下是一个用 Python 实现的冒泡排序算法，包括基础版本、优化版本、使用示例以及算法分析，帮助你全面理解该排序方法。...
+2026-03-31 17:40:42 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 17:52:40 | INFO     | __main__:34 - ===== 示例二：多轮连续对话 =====
+2026-03-31 17:52:40 | INFO     | api.chat_api:83 - [API][Chat] multi_turn_chat，model=qwen，session_id=''
+2026-03-31 17:52:40 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: ../tools/output/qwen_state.json
+2026-03-31 17:52:40 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 17:52:42 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 17:52:42 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 17:52:42 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 17:52:44 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 17:52:44 | INFO     | domain.llm.chat_domain:90 - [Domain][Chat] 多轮对话，session_id=''
+2026-03-31 17:52:44 | INFO     | component.chat:37 - [Component][Chat] 发送: 使用python写一个冒泡排序
+2026-03-31 17:54:16 | INFO     | adapter.llm.qwen:142 - [Adapter][Qwen] 收到回复: 下面是使用 Python 实现的冒泡排序算法，包括基础版本和优化版本，并附有使用示例和简要说明，帮助你更好地理解和应用。
+1. 基础版本
+python
+1
+2
+...
+2026-03-31 17:54:16 | INFO     | component.chat:42 - [Component][Chat] 收到回复: 下面是使用 Python 实现的冒泡排序算法，包括基础版本和优化版本，并附有使用示例和简要说明，帮助你更好地理解和应用。...
+2026-03-31 17:54:47 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 18:00:07 | INFO     | __main__:34 - ===== 示例二：多轮连续对话 =====
+2026-03-31 18:00:07 | INFO     | api.chat_api:83 - [API][Chat] multi_turn_chat，model=qwen，session_id=''
+2026-03-31 18:00:07 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: ../tools/output/qwen_state.json
+2026-03-31 18:00:07 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 18:00:08 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 18:00:08 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 18:00:08 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 18:00:11 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 18:00:11 | INFO     | domain.llm.chat_domain:90 - [Domain][Chat] 多轮对话，session_id=''
+2026-03-31 18:00:11 | INFO     | component.chat:37 - [Component][Chat] 发送: 帮我搜索下今天白银的价格
+2026-03-31 18:00:11 | INFO     | adapter.llm.qwen:120 - [Adapter][Qwen] 等待 AI 回复...
+2026-03-31 18:01:43 | INFO     | adapter.llm.qwen:142 - [Adapter][Qwen] 收到回复: 根据搜索结果，为您整理今日（2026年3月31日）白银价格参考信息：
+🇨🇳 国内白银价格（人民币计价）
+上海有色网 1#银锭（Ag99.99）：18,321 -...
+2026-03-31 18:01:43 | INFO     | component.chat:42 - [Component][Chat] 收到回复: 根据搜索结果，为您整理今日（2026年3月31日）白银价格参考信息：
+🇨🇳 国内白银价格（人民币计价）
+上海有色网 1#...
+2026-03-31 18:01:43 | INFO     | component.chat:66 - [Component][Chat] 当前 session_id=今日白银价格查询
+2026-03-31 18:01:43 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 20:46:23 | INFO     | __main__:34 - ===== 示例二：多轮连续对话 =====
+2026-03-31 20:46:23 | INFO     | api.chat_api:83 - [API][Chat] multi_turn_chat，model=qwen，session_id='今日白银价格查询'
+2026-03-31 20:46:23 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: ../tools/output/qwen_state.json
+2026-03-31 20:46:23 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 20:46:26 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 20:46:26 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 20:46:26 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 20:46:29 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 20:46:29 | INFO     | domain.llm.chat_domain:90 - [Domain][Chat] 多轮对话，session_id='今日白银价格查询'
+2026-03-31 20:46:29 | INFO     | component.chat:60 - [Component][Chat] 恢复会话 session_id=今日白银价格查询
+2026-03-31 20:46:29 | INFO     | adapter.llm.qwen:173 - [Adapter][Qwen] 打开会话: 今日白银价格查询
+2026-03-31 20:46:59 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 20:49:00 | INFO     | __main__:34 - ===== 示例二：多轮连续对话 =====
+2026-03-31 20:49:00 | INFO     | api.chat_api:83 - [API][Chat] multi_turn_chat，model=qwen，session_id='今日白银价格查询'
+2026-03-31 20:49:00 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: ../tools/output/qwen_state.json
+2026-03-31 20:49:00 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 20:49:02 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 20:49:02 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 20:49:02 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 20:49:04 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 20:49:04 | INFO     | domain.llm.chat_domain:90 - [Domain][Chat] 多轮对话，session_id='今日白银价格查询'
+2026-03-31 20:49:04 | INFO     | component.chat:60 - [Component][Chat] 恢复会话 session_id=今日白银价格查询
+2026-03-31 20:49:04 | INFO     | adapter.llm.qwen:173 - [Adapter][Qwen] 打开会话: 今日白银价格查询
+2026-03-31 20:49:06 | INFO     | adapter.llm.qwen:175 - [Adapter][Qwen] 会话已恢复，session_id=今日白银价格查询
+2026-03-31 20:49:06 | INFO     | component.chat:37 - [Component][Chat] 发送: 白银价格贵吗
+2026-03-31 20:49:08 | INFO     | adapter.llm.qwen:120 - [Adapter][Qwen] 等待 AI 回复...
+2026-03-31 20:51:09 | INFO     | adapter.llm.qwen:142 - [Adapter][Qwen] 收到回复: 💰 白银价格贵吗？多维度分析
+"贵不贵"是相对概念，我们从以下几个角度帮您判断：
+🔍 1️⃣ 历史价格对比（美元/盎司）
+时期
+	
+白银价格
+	
+说明
+
+
+20...
+2026-03-31 20:51:09 | INFO     | component.chat:42 - [Component][Chat] 收到回复: 💰 白银价格贵吗？多维度分析
+"贵不贵"是相对概念，我们从以下几个角度帮您判断：
+🔍 1️⃣ 历史价格对比（美元/盎司）...
+2026-03-31 20:51:09 | INFO     | component.chat:66 - [Component][Chat] 当前 session_id=今日白银价格查询
+2026-03-31 20:51:09 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
