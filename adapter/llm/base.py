@@ -75,3 +75,10 @@ class BaseLLMAdapter(ABC):
         self.type_message(request.message)
         self.send()
         return self.wait_for_response(timeout=request.timeout)
+
+    @abstractmethod
+    def select_model(self, model):
+        """
+        选择指定模型
+        """
+

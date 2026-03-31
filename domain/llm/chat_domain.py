@@ -30,35 +30,29 @@ class ChatDomain:
     会话上下文记忆由浏览器页面侧天然维护。
     """
 
-    def __init__(self, page: Page, model: str = "qwen"):
+    def __init__(self, page: Page, model: str = "Qwen3.5-Omni-Plus", provider: str = "qwen"):
         """
         :param page: Playwright Page 对象
         :param model: 模型名称，对应 MODEL_REGISTRY 中的 key
         """
         self._page = page
-        self._model_name = model
-        self._adapter = self._build_adapter(model)
+        self._provider = provider
+        self._adapter = self._build_adapter(self._provider)
         self._chat = ChatComponent(self._adapter)
+        self._model_name = model
 
-    def _build_adapter(self, model: str) -> BaseLLMAdapter:
+    def _build_adapter(self, provider: str) -> BaseLLMAdapter:
         """根据模型名构建对应适配器"""
-        if model not in MODEL_REGISTRY:
+        if provider not in MODEL_REGISTRY:
             supported = list(MODEL_REGISTRY.keys())
             raise ValueError(
-                f"不支持的模型: '{model}'，当前支持: {supported}。"
+                f"不支持的模型: '{provider}'，当前支持: {supported}。"
                 f"请在 MODEL_REGISTRY 中注册新适配器。"
             )
-        adapter_cls = MODEL_REGISTRY[model]
-        logger.info(f"[Domain][Chat] 使用模型: {model} -> {adapter_cls.__name__}")
+        adapter_cls = MODEL_REGISTRY[provider]
+        logger.info(f"[Domain][Chat] 使用模型: {provider} -> {adapter_cls.__name__}")
         return adapter_cls(self._page)
 
-    def switch_model(self, model: str) -> "ChatDomain":
-        """切换底层模型（重建适配器和对话组件）"""
-        logger.info(f"[Domain][Chat] 切换模型: {self._model_name} -> {model}")
-        self._model_name = model
-        self._adapter = self._build_adapter(model)
-        self._chat = ChatComponent(self._adapter)
-        return self
 
     def start(self) -> "ChatDomain":
         """启动对话：打开模型页面"""
@@ -99,3 +93,7 @@ class ChatDomain:
     def supported_models() -> List[str]:
         """返回当前已注册的模型列表"""
         return list(MODEL_REGISTRY.keys())
+
+    def select_model(self, model):
+        """选择指定的模型"""
+        return self._chat.select_model(model)

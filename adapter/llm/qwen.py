@@ -35,7 +35,11 @@ SELECTORS = {
     # 会话前缀
     "session_prefix": "div.chat-item-drag-link-content-tip-text.chat-item-drag-link-content-tip",
     # 当前会话
-    "cur_session": "a.chat-item-drag-link.chat-item-drag-active div.chat-item-drag-link-content-tip-text.chat-item-drag-link-content-tip"
+    "cur_session": "a.chat-item-drag-link.chat-item-drag-active div.chat-item-drag-link-content-tip-text.chat-item-drag-link-content-tip",
+    # 模型下拉箭头 #root > div > div > div.desktop-layout-content > div > div > div > div > div > header > div > div.header-left > div.index-module__mobile-model-selector___-iaic > div > span
+    "model_arrow":'span[role="img"] use[xlink:href="#icon-line-chevron-down"]',
+    # 模型选择菜单
+    "model_menu": "div.index-module__model-item-content___ydaoe.ant-flex.css-mncuj7.ant-flex-align-stretch.ant-flex-vertical",
 }
 
 
@@ -124,6 +128,7 @@ class QwenAdapter(BaseLLMAdapter):
         loading_appeared = False
         while time.time() < deadline:
             if self.page.locator(SELECTORS["loading"]).count() > 0:
+                logger.info("[Adapter][Qwen] 流式输出开始")
                 loading_appeared = True
                 break
             time.sleep(0.3)
@@ -132,6 +137,7 @@ class QwenAdapter(BaseLLMAdapter):
             # 等待 loading 消失（流式输出结束）
             while time.time() < deadline:
                 if self.page.locator(SELECTORS["loading"]).count() == 0:
+                    logger.info("[Adapter][Qwen] 流式输出结束")
                     break
                 time.sleep(poll_interval)
 
@@ -174,6 +180,15 @@ class QwenAdapter(BaseLLMAdapter):
         self.page.locator(SELECTORS["session_prefix"]+f':text("{session_id}")').click()
         logger.info(f"[Adapter][Qwen] 会话已恢复，session_id={session_id}")
         return self
+
+    def select_model(self, model):
+        """
+        选择模型
+        """
+        # 点击模型下拉箭头
+        self.page.locator(SELECTORS["model_arrow"]).click()
+        self.page.locator("div", has_text=model)
+        logger.info(f"[Adapter][Qwen] 已选择模型: {model}")
 
     def update_selectors(self, **kwargs) -> "QwenAdapter":
         """动态更新选择器（适配页面 DOM 变更）"""

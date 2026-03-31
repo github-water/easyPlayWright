@@ -243,3 +243,102 @@ python
 🔍 1️⃣ 历史价格对比（美元/盎司）...
 2026-03-31 20:51:09 | INFO     | component.chat:66 - [Component][Chat] 当前 session_id=今日白银价格查询
 2026-03-31 20:51:09 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 22:11:45 | INFO     | __main__:24 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 22:11:45 | INFO     | __main__:25 - 监听地址：http://localhost:8888
+2026-03-31 22:11:45 | INFO     | __main__:26 - API 端点：POST /api/chat
+2026-03-31 22:48:24 | INFO     | __main__:24 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 22:48:24 | INFO     | __main__:25 - 监听地址：http://localhost:8888
+2026-03-31 22:48:24 | INFO     | __main__:26 - API 端点：POST /api/chat
+2026-03-31 22:48:38 | INFO     | __main__:24 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 22:48:38 | INFO     | __main__:25 - 监听地址：http://localhost:8888
+2026-03-31 22:48:38 | INFO     | __main__:26 - API 端点：POST /api/chat
+2026-03-31 22:51:24 | INFO     | __main__:24 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 22:51:24 | INFO     | __main__:25 - 监听地址：http://localhost:8888
+2026-03-31 22:51:24 | INFO     | __main__:26 - API 端点：POST /api/chat
+2026-03-31 22:55:07 | INFO     | __main__:23 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 22:55:07 | INFO     | __main__:24 - 监听地址：http://localhost:8888
+2026-03-31 22:55:07 | INFO     | __main__:25 - API 端点：POST /api/chat
+2026-03-31 23:02:23 | INFO     | __main__:23 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 23:02:23 | INFO     | __main__:24 - 监听地址：http://localhost:8888
+2026-03-31 23:02:23 | INFO     | __main__:25 - API 端点：POST /api/chat
+2026-03-31 23:02:28 | INFO     | api.http.http_server:66 - [HTTP] 收到对话请求：message=你能帮我分析视频吗？..., model=qwen, attachments=0
+2026-03-31 23:02:28 | INFO     | api.chat_api:47 - [API][Chat] text_chat，model=qwen
+2026-03-31 23:02:28 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 23:02:29 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 23:02:29 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 23:02:29 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 23:02:31 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 23:02:31 | INFO     | domain.llm.chat_domain:74 - [Domain][Chat] 文本对话: 你能帮我分析视频吗？...
+2026-03-31 23:02:31 | INFO     | component.chat:37 - [Component][Chat] 发送: 你能帮我分析视频吗？
+2026-03-31 23:02:32 | INFO     | adapter.llm.qwen:120 - [Adapter][Qwen] 等待 AI 回复...
+2026-03-31 23:03:33 | INFO     | adapter.llm.qwen:142 - [Adapter][Qwen] 收到回复: ...
+2026-03-31 23:03:33 | INFO     | component.chat:42 - [Component][Chat] 收到回复: ...
+2026-03-31 23:03:33 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 23:03:33 | INFO     | api.http.http_server:82 - [HTTP] 对话完成，回复长度：0
+2026-03-31 23:07:09 | INFO     | __main__:23 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 23:07:09 | INFO     | __main__:24 - 监听地址：http://localhost:8888
+2026-03-31 23:07:09 | INFO     | __main__:25 - API 端点：POST /api/chat
+2026-03-31 23:07:31 | INFO     | api.http.http_server:66 - [HTTP] 收到对话请求：message=你能帮我分析视频吗？..., model=qwen, attachments=0
+2026-03-31 23:07:31 | INFO     | api.chat_api:52 - [API][Chat] text_chat，model=qwen
+2026-03-31 23:07:31 | WARNING  | adapter.browser:40 - [Adapter] 登录态文件不存在，将以未登录状态启动: ../output/state/qwen_state.json
+2026-03-31 23:07:31 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 23:07:32 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 23:07:32 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 23:07:32 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 23:07:34 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 23:07:34 | INFO     | domain.llm.chat_domain:74 - [Domain][Chat] 文本对话: 你能帮我分析视频吗？...
+2026-03-31 23:07:34 | INFO     | component.chat:37 - [Component][Chat] 发送: 你能帮我分析视频吗？
+2026-03-31 23:07:35 | INFO     | adapter.llm.qwen:120 - [Adapter][Qwen] 等待 AI 回复...
+2026-03-31 23:07:41 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 23:07:41 | ERROR    | api.http.http_server:91 - [HTTP] 对话失败：Locator.count: Target page, context or browser has been closed
+2026-03-31 23:11:02 | INFO     | __main__:23 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 23:11:02 | INFO     | __main__:24 - 监听地址：http://localhost:8888
+2026-03-31 23:11:02 | INFO     | __main__:25 - API 端点：POST /api/chat
+2026-03-31 23:11:04 | INFO     | api.http.http_server:66 - [HTTP] 收到对话请求：message=你能帮我分析视频吗？..., model=qwen, attachments=0
+2026-03-31 23:11:04 | INFO     | api.chat_api:52 - [API][Chat] text_chat，model=qwen
+2026-03-31 23:11:04 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: output/state/qwen_state.json
+2026-03-31 23:11:04 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 23:11:05 | INFO     | domain.llm.chat_domain:52 - [Domain][Chat] 使用模型: qwen -> QwenAdapter
+2026-03-31 23:11:05 | INFO     | component.chat:27 - [Component][Chat] 初始化对话
+2026-03-31 23:11:05 | INFO     | adapter.llm.qwen:53 - [Adapter][Qwen] 打开页面: https://chat.qwen.ai/
+2026-03-31 23:11:09 | INFO     | adapter.llm.qwen:56 - [Adapter][Qwen] 页面就绪
+2026-03-31 23:11:09 | INFO     | domain.llm.chat_domain:74 - [Domain][Chat] 文本对话: 你能帮我分析视频吗？...
+2026-03-31 23:11:09 | INFO     | component.chat:37 - [Component][Chat] 发送: 你能帮我分析视频吗？
+2026-03-31 23:11:09 | INFO     | adapter.llm.qwen:120 - [Adapter][Qwen] 等待 AI 回复...
+2026-03-31 23:12:10 | INFO     | adapter.llm.qwen:142 - [Adapter][Qwen] 收到回复: 很抱歉，我目前无法直接分析视频文件。作为一个文本型AI助手，我有以下限制：
+❌ 无法直接处理：
+播放或观看视频内容
+提取视频中的音频、图像或帧
+进行视觉识别、动...
+2026-03-31 23:12:10 | INFO     | component.chat:42 - [Component][Chat] 收到回复: 很抱歉，我目前无法直接分析视频文件。作为一个文本型AI助手，我有以下限制：
+❌ 无法直接处理：
+播放或观看视频内容
+提取...
+2026-03-31 23:12:11 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 23:12:11 | INFO     | api.http.http_server:82 - [HTTP] 对话完成，回复长度：467
+2026-03-31 23:53:11 | INFO     | __main__:23 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 23:53:11 | INFO     | __main__:24 - 监听地址：http://localhost:8888
+2026-03-31 23:53:11 | INFO     | __main__:25 - API 端点：POST /api/chat
+2026-03-31 23:53:29 | INFO     | api.http.http_server:69 - [HTTP] 收到对话请求：message=你能帮我分析视频吗？..., model=Qwen3.5-Omni-Plus, provider=qwen, attachments=0
+2026-03-31 23:53:29 | INFO     | api.chat_api:59 - [API][Chat] text_chat，model=Qwen3.5-Omni-Plus
+2026-03-31 23:53:29 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: output/state/qwen_state.json
+2026-03-31 23:53:29 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 23:53:30 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 23:53:30 | ERROR    | api.http.http_server:95 - [HTTP] 对话失败：'ChatDomain' object has no attribute '_chat'
+2026-03-31 23:56:42 | INFO     | __main__:23 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 23:56:42 | INFO     | __main__:24 - 监听地址：http://localhost:8888
+2026-03-31 23:56:42 | INFO     | __main__:25 - API 端点：POST /api/chat
+2026-03-31 23:56:47 | INFO     | api.http.http_server:69 - [HTTP] 收到对话请求：message=你能帮我分析视频吗？..., model=Qwen3.5-Omni-Plus, provider=qwen, attachments=0
+2026-03-31 23:56:47 | INFO     | api.chat_api:59 - [API][Chat] text_chat，model=Qwen3.5-Omni-Plus
+2026-03-31 23:56:47 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: output/state/qwen_state.json
+2026-03-31 23:56:47 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 23:56:48 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭
+2026-03-31 23:56:48 | ERROR    | api.http.http_server:95 - [HTTP] 对话失败：'ChatDomain' object has no attribute '_chat'
+2026-03-31 23:57:03 | INFO     | __main__:23 - === easyPlayWright HTTP Service 启动 ===
+2026-03-31 23:57:03 | INFO     | __main__:24 - 监听地址：http://localhost:8888
+2026-03-31 23:57:03 | INFO     | __main__:25 - API 端点：POST /api/chat
+2026-03-31 23:57:17 | INFO     | api.http.http_server:69 - [HTTP] 收到对话请求：message=你能帮我分析视频吗？..., model=Qwen3.5-Omni-Plus, provider=qwen, attachments=0
+2026-03-31 23:58:26 | INFO     | api.chat_api:59 - [API][Chat] text_chat，model=Qwen3.5-Omni-Plus
+2026-03-31 23:58:26 | INFO     | adapter.browser:37 - [Adapter] 加载登录态: output/state/qwen_state.json
+2026-03-31 23:58:26 | INFO     | adapter.browser:43 - [Adapter] 启动浏览器: chromium, headless=False
+2026-03-31 23:59:07 | INFO     | adapter.browser:71 - [Adapter] 浏览器已关闭

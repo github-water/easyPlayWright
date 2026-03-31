@@ -77,3 +77,9 @@ class ChatComponent:
         logger.info("[Component][Chat] 重置对话上下文")
         self._adapter.new_chat()
         return self
+
+    def select_model(self, model):
+        """选择模型"""
+        logger.info(f"[Component][Chat] 选择模型: {model}")
+        self._adapter.select_model(model)
+        return model

@@ -13,6 +13,11 @@ from pkg.models import ChatRequest, Attachment
 from pkg.logger import logger
 
 
+def get_storage_state(provider, storage_state):
+    if storage_state:
+        return storage_state
+    return f"output/state/{provider}_state.json"
+
 class ChatApi:
     """
     大模型对话系统对外接口。
@@ -20,14 +25,21 @@ class ChatApi:
     会话记忆由浏览器页面侧（端侧）天然维护，通过 session_id 关联。
     """
 
-    def __init__(self, model: str = "qwen", storage_state: str = None):
+    def __init__(self, model: str = "Qwen3.5-Omni-Plus", provider: str = "qwen", storage_state: str = None):
         """
         :param model: 模型名称，当前支持 'qwen'
+        :param provider: 服务提供商，如 'aliyun', 'openai' 等，为 None 时使用默认配置
         :param storage_state: 登录态文件路径，如 'output/qwen_state.json'
                               为 None 时读取 config.yaml 中 browser.storage_state
         """
         self._model = model
-        self._storage_state = storage_state
+        self._provider = provider
+        self._storage_state = get_storage_state(self._provider, storage_state)
+        
+    @property
+    def provider(self) -> str:
+        """返回当前使用的服务提供商"""
+        return self._provider or "default"
 
     def text_chat(
         self,
@@ -50,6 +62,7 @@ class ChatApi:
             page = PageAdapter(context).new_page()
             domain = ChatDomain(page, model=self._model)
             domain.start()
+            domain.select_model(self._model)
             response = domain.text_chat(request)
 
         return response
