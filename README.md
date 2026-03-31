@@ -1,8 +1,8 @@
 # easyPlayWright
 
-基于 Playwright + Python 的网页自动化框架，采用 **C4 架构**四层设计。
+基于 Playwright + Python 的网页自动化框架
 
-## C4 架构说明
+## 架构说明
 
 ```
 easyPlayWright/
@@ -39,7 +39,7 @@ easyPlayWright/
 └── main.py                     # 主入口
 ```
 
-## C4 层次职责与调用方向
+## 层次职责与调用方向
 
 ```
 外部调用者（测试 / 脚本 / CI）
@@ -70,8 +70,8 @@ easyPlayWright/
         pkg/ （横切，各层均可使用）
 ```
 
-| 层 | C4 对应 | 方向 | 职责 |
-|----|---------|------|------|
+| 层 |  对应 | 方向 | 职责 |
+|----|-------|------|------|
 | `api/` | System Interface | **被外部调用** | 暴露系统能力，屏蔽内部实现 |
 | `domain/` | System Context | 编排 component | 定义业务用例，表达"做什么" |
 | `component/` | Component | **主动调用外部** | 系统内编排，驱动 adapter |
