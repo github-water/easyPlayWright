@@ -21,10 +21,6 @@ def take_screenshot(page: Page, name: str = "") -> str:
     return str(path)
 
 
-def wait_for_seconds(seconds: float):
-    """显式等待指定秒数"""
-    time.sleep(seconds)
-
 
 def ensure_dir(path: str) -> Path:
     """确保目录存在"""

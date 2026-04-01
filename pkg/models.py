@@ -95,6 +95,8 @@ class ChatRequest:
     attachments: List[Attachment] = field(default_factory=list)
     timeout: float = 60.0
     session_id: str = ""
+    provider: str = "qwen"
+    model: str = "Qwen3.5-Omni-Plus"
 
     @property
     def has_attachments(self) -> bool:

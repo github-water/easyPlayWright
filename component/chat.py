@@ -48,7 +48,7 @@ class ChatComponent:
         - session_id 非空：导航到已有会话页面后再发送，保持端侧上下文记忆
         """
         await self._adapter.open_session(request.session_id)
-
+        await self._adapter.select_model(request.model)
         response = await self.send(request)
 
         session_id = await self._adapter.get_session_id()

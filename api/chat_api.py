@@ -10,6 +10,7 @@ C4 定位：System Interface（Container 对外边界）
 
 异步架构：基于 Playwright async API，支持多请求并发。
 """
+import asyncio
 from typing import List, Dict, Optional
 
 from adapter.browser import BrowserAdapter
@@ -69,7 +70,7 @@ class ChatApi:
         :param timeout: 等待回复超时秒数
         :return: {"session_id", "question", "answer", "timestamp"}
         """
-        request = self._build_request(message, attachments, timeout, session_id)
+        request = self._build_request(message, attachments, timeout, session_id, self.provider, self._model)
         logger.info(
             f"[API][Chat] chat，model={self._model}，"
             f"session_id={session_id!r}，singleton={self._singleton}"
@@ -108,10 +109,6 @@ class ChatApi:
             logger.debug(f"[API][Chat] 获取 Page 锁: {page_key}")
             if is_new:
                 await domain.start()
-                await domain.select_model(self._model)
-            # 新会话（无 session_id）时先重置页面，避免上一轮残留
-            if not request.session_id:
-                await domain.reset()
             return await domain.chat(request)
 
     # ------------------------------------------------------------------ #
@@ -136,6 +133,8 @@ class ChatApi:
         attachment_paths: Optional[List[str]],
         timeout: float,
         session_id: str = "",
+        provider: str = "",
+        model: str = ""
     ) -> ChatRequest:
         """构建单条 ChatRequest"""
         attachments = [Attachment(path=p) for p in (attachment_paths or [])]
@@ -144,4 +143,6 @@ class ChatApi:
             attachments=attachments,
             timeout=timeout,
             session_id=session_id,
+            provider=provider,
+            model=model
         )
