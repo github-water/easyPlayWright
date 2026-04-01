@@ -2,110 +2,124 @@
 api 层 - HTTP 服务入口
 职责：将 ChatApi 封装为 HTTP 接口，供外部系统调用
 C4 定位：System Interface（HTTP 协议版本）
+
+使用 FastAPI 异步框架 + Playwright 异步 API，支持多请求并发。
 """
-from flask import Flask, request, jsonify, Blueprint
+from fastapi import APIRouter
+from pydantic import BaseModel, Field
+from typing import Optional, List
 from pathlib import Path
 
 from api.chat_api import ChatApi
-from main import app
 from pkg.logger import logger
 
-chat_bp = Blueprint("chat_bp", __name__)
+chat_router = APIRouter()
 
-@chat_bp.route("/api/chat", methods=["POST"])
-def text_chat():
+
+# ------------------------------------------------------------------ #
+# 请求/响应模型
+# ------------------------------------------------------------------ #
+
+class ChatRequest(BaseModel):
+    """对话请求体"""
+    message: str = Field(..., description="对话文本（必填）")
+    model: str = Field(default="Qwen3.5-Omni-Plus", description="模型名称")
+    provider: str = Field(default="qwen", description="服务提供商")
+    session_id: str = Field(default="", description="会话 ID（首次留空，后续传入以继续多轮对话）")
+    attachments: List[str] = Field(default=[], description="附件文件路径列表")
+    timeout: float = Field(default=60.0, description="超时秒数")
+
+
+class ChatResponseData(BaseModel):
+    """对话响应数据"""
+    answer: str
+    question: str
+    session_id: str
+    timestamp: str
+    model: str
+    provider: str
+
+
+class ChatResponse(BaseModel):
+    """对话响应体"""
+    success: bool
+    data:Optional[ChatResponseData] = None
+    error: Optional[str] = None
+
+
+class HealthResponse(BaseModel):
+    """健康检查响应"""
+    status: str
+    service: str
+
+
+# ------------------------------------------------------------------ #
+# 路由
+# ------------------------------------------------------------------ #
+
+@chat_router.post("/api/chat", response_model=ChatResponse)
+async def chat(req: ChatRequest):
     """
-    文本对话接口（支持附件、自定义模型）
-    
-    Request Body (JSON):
-    {
-        "message": "你好，请帮我分析这个文件",  # 必填，对话文本
-        "model": "qwen",                       # 可选，模型名称，默认 qwen
-        "provider": "aliyun",                  # 可选，服务提供商，默认 None
-        "attachments": [                        # 可选，附件路径列表
-            "/path/to/file.pdf",
-            "/path/to/image.png"
-        ],
-        "timeout": 60.0                         # 可选，超时秒数，默认 60
-    }
-    
-    Response (JSON):
-    {
-        "success": true,                        # true 表示成功，false 表示失败
-        "data": {
-            "answer": "AI 回复的内容...",         # AI 回复文本
-            "question": "用户提问",              # 用户问题
-            "model": "qwen",                     # 使用的模型
-            "provider": "aliyun"                 # 使用的服务提供商
-        },
-        "error": null                           # 失败时包含错误信息
-    }
+    统一对话接口（支持单轮/多轮、附件、自定义模型）。
+    - 首次对话：session_id 留空
+    - 多轮后续：传入上次返回的 session_id
+    异步处理，不阻塞其他请求。
     """
     try:
-        data = request.get_json()
-        
-        # 参数校验
-        if not data or "message" not in data:
-            return jsonify({
-                "success": False,
-                "error": "缺少必填参数：message"
-            }), 400
-        
-        message = data["message"]
-        model = data.get("model", "Qwen3.5-Omni-Plus")
-        provider = data.get("provider", "qwen")
-        attachments = data.get("attachments", [])
-        timeout = data.get("timeout", 60.0)
-        
         # 校验附件文件是否存在
-        for att_path in attachments:
+        for att_path in req.attachments:
             if not Path(att_path).exists():
                 logger.warning(f"[HTTP] 附件文件不存在：{att_path}")
-                return jsonify({
-                    "success": False,
-                    "error": f"附件文件不存在：{att_path}"
-                }), 400
-        
-        logger.info(f"[HTTP] 收到对话请求：message={message[:60]}..., model={model}, provider={provider}, attachments={len(attachments)}")
-        
-        # 调用 ChatApi（每次使用指定模型和 provider 创建新实例）
-        chat_api = ChatApi(model=model, provider=provider)
-        answer = chat_api.text_chat(
-            message=message,
-            attachments=attachments if attachments else None,
-            timeout=timeout
+                return ChatResponse(
+                    success=False,
+                    error=f"附件文件不存在：{att_path}"
+                )
+
+        logger.info(
+            f"[HTTP] 收到对话请求：message={req.message[:60]}..., "
+            f"model={req.model}, provider={req.provider}, "
+            f"session_id={req.session_id!r}, "
+            f"attachments={len(req.attachments)}"
         )
-        
-        response_data = {
-            "answer": answer,
-            "question": message,
-            "model": model,
-            "provider": chat_api.provider
-        }
-        
-        logger.info(f"[HTTP] 对话完成，回复长度：{len(answer)}")
-        
-        return jsonify({
-            "success": True,
-            "data": response_data,
-            "error": None
-        })
-        
+
+        # 使用单例模式创建 ChatApi，复用浏览器实例
+        chat_api = ChatApi(model=req.model, provider=req.provider, singleton=True)
+        result = await chat_api.chat(
+            message=req.message,
+            session_id=req.session_id,
+            attachments=req.attachments if req.attachments else None,
+            timeout=req.timeout,
+        )
+
+        response_data = ChatResponseData(
+            answer=result["answer"],
+            question=result["question"],
+            session_id=result["session_id"],
+            timestamp=result["timestamp"],
+            model=req.model,
+            provider=chat_api.provider,
+        )
+
+        logger.info(f"[HTTP] 对话完成，回复长度：{len(result['answer'])}")
+
+        return ChatResponse(
+            success=True,
+            data=response_data,
+            error=None,
+        )
+
     except Exception as e:
         logger.error(f"[HTTP] 对话失败：{e}", exc_info=True)
-        return jsonify({
-            "success": False,
-            "error": f"服务器内部错误：{str(e)}"
-        }), 500
+        return ChatResponse(
+            success=False,
+            error=f"服务器内部错误：{str(e)}",
+        )
 
 
-@chat_bp.route("/health", methods=["GET"])
-def health_check():
+@chat_router.get("/health", response_model=HealthResponse)
+async def health_check():
     """健康检查接口"""
-    return jsonify({
-        "status": "ok",
-        "service": "easyPlayWright Chat API"
-    })
-
-
-
+    return HealthResponse(
+        status="ok",
+        service="easyPlayWright Chat API"
+    )

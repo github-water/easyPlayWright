@@ -1,5 +1,6 @@
 browser:
   type: chromium        # chromium | firefox | webkit
+  channel: chrome       # 使用系统安装的 Chrome 浏览器（留空则用 Playwright 自带 Chromium）
   headless: false
   slow_mo: 0
   timeout: 30000

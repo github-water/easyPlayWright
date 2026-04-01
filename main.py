@@ -1,14 +1,10 @@
 """
 easyPlayWright 主入口
-通过 api 层（对外接口）调用系统能力。
+通过 uvicorn 启动 FastAPI 异步 HTTP 服务。
 用法：python main.py
 """
 import sys
 from pathlib import Path
-
-from flask import Flask
-
-from api.init import app
 
 sys.path.insert(0, str(Path(__file__).parent))
 
@@ -16,12 +12,21 @@ from pkg.logger import logger
 
 
 def main():
-    # 启动 Flask 开发服务器（生产环境建议使用 gunicorn/uwsgi）
-    app.run(host="0.0.0.0", port=8888, debug=False, threaded=True)
+    import uvicorn
+    # 使用 uvicorn 启动 FastAPI 应用
+    # 异步架构：单进程单事件循环，Playwright 异步操作在同一循环中并发执行
+    uvicorn.run(
+        "api.init:app",
+        host="0.0.0.0",
+        port=8009,
+        reload=False,
+        log_level="info",
+    )
+
 
 if __name__ == "__main__":
     logger.info("=== easyPlayWright HTTP Service 启动 ===")
-    logger.info("监听地址：http://localhost:8888")
+    logger.info("监听地址：http://localhost:8009")
     logger.info("API 端点：POST /api/chat")
+    logger.info("API 文档：http://localhost:8009/docs")
     main()
-
