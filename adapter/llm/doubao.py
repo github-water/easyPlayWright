@@ -23,23 +23,21 @@ SELECTORS = {
     "send_btn": '[data-testid="chat_input_send_button"]',
     # 新建对话
     "new_chat": '[data-testid="create_conversation_button"]',
-    # 文件上传按钮（输入框左侧的附件按钮）
-    "upload_btn": "div[class*='upload']",
-    # 文件上传 input（隐藏的 file input）
-    "file_input": "input[type='file']",
+    # 附件选择器
+    "attachment": "#radix-:r3i:",
+    # 文件上传 input
+    "file_upload": '[data-testid="upload_file_panel_upload_item"]',
     # AI 回复内容块
-    "response": "div[class*='receive-message'] div[class*='message-content']",
+    "response": '[data-testid="receive_message"]',
     # 停止生成按钮
-    "loading": "div[class*='stop-btn'], button[class*='stop']",
+    "loading": '[data-testid="chat_input_local_break_button"]',
     # 会话列表项
-    "session_item": "div[class*='session-item']",
+    "session_item": '[data-testid="chat_list_thread_item"]',
     # 当前激活会话
-    "cur_session": "div[class*='session-item'][class*='active']",
-    # 模型选择器
-    "model_selector": "div[class*='model-selector'], div[class*='model-switch']",
-    # 模型菜单项前缀
-    "model_menu": "text=",
+    "cur_session": '[data-testid="chat_list_bot_item"]',
 }
+
+
 
 
 class DoubaoAdapter(BaseLLMAdapter):
@@ -82,9 +80,10 @@ class DoubaoAdapter(BaseLLMAdapter):
         file_paths = [a.abs_path for a in request.attachments]
         logger.info(f"[Adapter][Doubao] 上传附件 {len(file_paths)} 个: {[a.name for a in request.attachments]}")
 
+        await self.page.locator(SELECTORS["attachment"]).click()
         # 监听 filechooser 事件，同时点击上传按钮触发文件选择器
         async with self.page.expect_file_chooser() as fc_info:
-            await self.page.locator(SELECTORS["upload_btn"]).click()
+            await self.page.locator(SELECTORS["file_upload"]).click()
         file_chooser = await fc_info.value
 
         logger.debug(f"[Adapter][Doubao] 通过 FileChooser 注入文件: {file_paths}")
@@ -92,9 +91,15 @@ class DoubaoAdapter(BaseLLMAdapter):
 
         # 等待上传完成
         await asyncio.sleep(2.0)
+        # 存在预览文件
+        await self.exist_preview_file()
         logger.info("[Adapter][Doubao] 附件上传完成")
 
         return self
+
+    async def exist_preview_file(self):
+        # 预览图片
+        await self.page.wait_for_selector('[data-testid="mdbox_image"]', state="visible", timeout=20000)
 
     async def send(self) -> "DoubaoAdapter":
         """点击发送按钮（等待按钮可用后再点击）"""
@@ -105,15 +110,9 @@ class DoubaoAdapter(BaseLLMAdapter):
         while await send_btn.is_disabled():
             if time.time() > deadline:
                 raise TimeoutError("[Adapter][Doubao] 发送按钮超过 30 秒仍为 disabled")
-            await asyncio.sleep(0.3)
+            await asyncio.sleep(2)
         logger.debug("[Adapter][Doubao] 发送消息")
         await send_btn.click()
-        return self
-
-    async def send_by_enter(self) -> "DoubaoAdapter":
-        """通过回车键发送消息"""
-        logger.debug("[Adapter][Doubao] 回车发送消息")
-        await self.page.locator(SELECTORS["input"]).press("Enter")
         return self
 
     async def wait_for_response(self, timeout: float = 180.0, poll_interval: float = 1.0) -> str:
@@ -177,11 +176,6 @@ class DoubaoAdapter(BaseLLMAdapter):
             parts = url.rstrip("/").split("/chat/")
             if len(parts) > 1 and parts[1]:
                 return parts[1].split("?")[0]
-        # 备选：从当前激活的会话元素获取
-        cur = self.page.locator(SELECTORS["cur_session"])
-        if await cur.count() > 0:
-            text = await cur.first.text_content()
-            return text.strip() if text else ""
         return ""
 
     async def open_session(self, session_id: str) -> "DoubaoAdapter":
@@ -192,7 +186,7 @@ class DoubaoAdapter(BaseLLMAdapter):
         else:
             logger.info(f"[Adapter][Doubao] 打开会话: {session_id}")
             # 尝试通过 URL 直接导航
-            target_url = f"{DOUBAO_URL}{session_id}"
+            target_url = f"{DOUBAO_URL}/{session_id}"
             await self.page.goto(target_url, wait_until="domcontentloaded")
             await self.page.wait_for_selector(SELECTORS["input"], state="visible", timeout=30000)
             logger.info(f"[Adapter][Doubao] 会话已恢复，session_id={session_id}")
@@ -200,21 +194,5 @@ class DoubaoAdapter(BaseLLMAdapter):
 
     async def select_model(self, model):
         """选择模型：点击模型选择器，等待菜单出现，点击目标模型项"""
-        logger.info(f"[Adapter][Doubao] 选择模型: {model}")
-        selector = self.page.locator(SELECTORS["model_selector"])
-        if await selector.count() > 0 and await selector.first.is_visible():
-            await selector.first.click()
-            await asyncio.sleep(0.5)
-            model_item = self.page.locator(SELECTORS["model_menu"] + f"{model}").first
-            await model_item.wait_for(state="visible", timeout=5000)
-            await model_item.click()
-            await asyncio.sleep(0.3)
-            logger.info(f"[Adapter][Doubao] 已选择模型: {model}")
-        else:
-            logger.warning(f"[Adapter][Doubao] 未找到模型选择器，跳过模型选择: {model}")
+        logger.info(f"[Adapter][Doubao] 默认选择模型")
 
-    def update_selectors(self, **kwargs) -> "DoubaoAdapter":
-        """动态更新选择器（适配页面 DOM 变更）"""
-        SELECTORS.update(kwargs)
-        logger.debug(f"[Adapter][Doubao] 选择器已更新: {kwargs}")
-        return self

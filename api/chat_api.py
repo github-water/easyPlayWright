@@ -99,7 +99,7 @@ class ChatApi:
         page_key = self._provider
         is_new = not adapter.has_cached_page(page_key)
         page = await adapter.get_or_create_page(page_key)
-        domain = ChatDomain(page, model=self._model)
+        domain = ChatDomain(page, model=self._model, provider=self._provider)
         return adapter, domain, is_new, page_key
 
     async def _chat_singleton(self, request: ChatRequest) -> Dict:
