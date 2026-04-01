@@ -33,6 +33,7 @@ class ChatRequest(BaseModel):
 class ChatResponseData(BaseModel):
     """对话响应数据"""
     answer: str
+    files: List[str]
     question: str
     session_id: str
     timestamp: str

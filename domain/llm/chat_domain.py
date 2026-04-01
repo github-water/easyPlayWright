@@ -9,14 +9,16 @@ from playwright.async_api import Page
 
 from adapter.llm.base import BaseLLMAdapter
 from adapter.llm.qwen import QwenAdapter
+from adapter.llm.doubao import DoubaoAdapter
 from component.chat import ChatComponent
 from pkg.models import ChatRequest
 from pkg.logger import logger
 
 
-# 已支持的模型注册表：模型名 -> 适配器类
+# 已支持的模型注册表：provider 名 -> 适配器类
 MODEL_REGISTRY: Dict[str, Type[BaseLLMAdapter]] = {
     "qwen": QwenAdapter,
+    "doubao": DoubaoAdapter,
     # 扩展示例（后续新增适配器后在此注册）:
     # "chatgpt": ChatGPTAdapter,
     # "deepseek": DeepSeekAdapter,

@@ -31,7 +31,7 @@ app = FastAPI(
 
 def register_routers(fastapi_app: FastAPI):
     """注册所有路由到 FastAPI 应用"""
-    from api.http.http_server import chat_router
+    from api.http.chat_controller import chat_router
 
     fastapi_app.include_router(chat_router)
 
