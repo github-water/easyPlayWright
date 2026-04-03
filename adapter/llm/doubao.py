@@ -24,7 +24,7 @@ SELECTORS = {
     # 新建对话
     "new_chat": '[data-testid="create_conversation_button"]',
     # 附件选择器
-    "attachment": "#radix-:r3i:",
+    "attachment": 'button:has(svg path[d^="M17.3977"])',
     # 文件上传 input
     "file_upload": '[data-testid="upload_file_panel_upload_item"]',
     # AI 回复内容块
@@ -71,7 +71,7 @@ class DoubaoAdapter(BaseLLMAdapter):
     async def upload_attachments(self, request: ChatRequest) -> "DoubaoAdapter":
         """
         上传附件列表（图片/视频/文件）。
-        豆包上传流程：点击附件按钮 → 触发文件选择器。
+        豆包上传流程：点击附件按钮 → 等待上传面板展开 → 点击"上传文件" → 触发文件选择器。
         通过监听 filechooser 事件注入文件路径。
         """
         if not request.has_attachments:
@@ -80,18 +80,28 @@ class DoubaoAdapter(BaseLLMAdapter):
         file_paths = [a.abs_path for a in request.attachments]
         logger.info(f"[Adapter][Doubao] 上传附件 {len(file_paths)} 个: {[a.name for a in request.attachments]}")
 
-        await self.page.locator(SELECTORS["attachment"]).click()
-        # 监听 filechooser 事件，同时点击上传按钮触发文件选择器
-        async with self.page.expect_file_chooser() as fc_info:
-            await self.page.locator(SELECTORS["file_upload"]).click()
+        # 1. 点击附件按钮，弹出上传面板
+        attachment_btn = self.page.locator(SELECTORS["attachment"])
+        await attachment_btn.click()
+        logger.info("[Adapter][Doubao] 已点击附件按钮，等待上传面板展开...")
+
+        # 2. 等待上传面板中的"上传文件"按钮可见
+        upload_btn = self.page.locator(SELECTORS["file_upload"])
+        await upload_btn.wait_for(state="visible", timeout=10000)
+        await asyncio.sleep(0.3)
+
+        # 3. 先注册 filechooser 监听，再点击"上传文件"触发文件选择器
+        async with self.page.expect_file_chooser(timeout=10000) as fc_info:
+            await upload_btn.click()
+            logger.info("[Adapter][Doubao] 已点击上传文件按钮，等待文件选择器...")
         file_chooser = await fc_info.value
 
-        logger.debug(f"[Adapter][Doubao] 通过 FileChooser 注入文件: {file_paths}")
+        # 4. 通过 file_chooser 注入文件
+        logger.info(f"[Adapter][Doubao] 通过 FileChooser 注入文件: {file_paths}")
         await file_chooser.set_files(file_paths)
 
-        # 等待上传完成
+        # 5. 等待上传完成（预览出现）
         await asyncio.sleep(2.0)
-        # 存在预览文件
         await self.exist_preview_file()
         logger.info("[Adapter][Doubao] 附件上传完成")
 

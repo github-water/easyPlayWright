@@ -23,11 +23,11 @@ chat_router = APIRouter()
 class ChatRequest(BaseModel):
     """对话请求体"""
     message: str = Field(..., description="对话文本（必填）")
-    model: str = Field(default="Qwen3.5-Omni-Plus", description="模型名称")
+    model: str = Field(default="", description="模型名称")
     provider: str = Field(default="qwen", description="服务提供商")
     session_id: str = Field(default="", description="会话 ID（首次留空，后续传入以继续多轮对话）")
     attachments: List[str] = Field(default=[], description="附件文件路径列表")
-    timeout: float = Field(default=60.0, description="超时秒数")
+    timeout: float = Field(default=120.0, description="超时秒数")
 
 
 class ChatResponseData(BaseModel):
