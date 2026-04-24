@@ -3,8 +3,8 @@ adapter 层 - 大模型页面适配器抽象基类
 职责：定义所有 LLM 页面适配器必须实现的统一接口，支持多模型切换。
 C4 定位：External System Adapter 抽象契约
 """
+import asyncio
 from abc import ABC, abstractmethod
-from time import sleep
 
 from playwright.async_api import Page
 
@@ -76,7 +76,7 @@ class BaseLLMAdapter(ABC):
             await self.upload_attachments(request)
         await self.type_message(request.message)
         await self.send()
-        sleep(1.5)
+        await asyncio.sleep(1.5)
         return await self.wait_for_response(timeout=request.timeout)
 
     @abstractmethod

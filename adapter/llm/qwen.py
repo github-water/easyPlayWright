@@ -35,7 +35,7 @@ SELECTORS = {
     # 当前会话
     "cur_session": "a.chat-item-drag-link.chat-item-drag-active div.chat-item-drag-link-content-tip-text.chat-item-drag-link-content-tip",
     # 模型下拉箭头（header 区域的模型选择器）
-    "model_arrow": "#qwen-chat-header-left > span > div > span",
+    "model_arrow": "#qwen-chat-header-left",
     # 模型选择菜单
     "model_menu": "text=",
     # 预览文件

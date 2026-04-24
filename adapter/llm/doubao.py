@@ -18,9 +18,11 @@ DOUBAO_URL = "https://www.doubao.com/chat/"
 # 页面元素选择器（基于豆包页面 DOM 结构）
 SELECTORS = {
     # 输入框
-    "input": '[data-testid="chat_input_input"]',
+    "input": '.semi-input-textarea',
     # 发送按钮
-    "send_btn": '[data-testid="chat_input_send_button"]',
+    "send_btn": '#flow-end-msg-send',
+    # 话筒元素
+    "voiceTube": 'div[data-state="inactive"][data-trigger-type="hover"]',
     # 新建对话
     "new_chat": '[data-testid="create_conversation_button"]',
     # 附件选择器
@@ -28,9 +30,9 @@ SELECTORS = {
     # 文件上传 input
     "file_upload": '[data-testid="upload_file_panel_upload_item"]',
     # AI 回复内容块
-    "response": '[data-testid="receive_message"]',
+    "response": 'div[data-message-id]',
     # 停止生成按钮
-    "loading": '[data-testid="chat_input_local_break_button"]',
+    "loading": 'div[data-trigger-type="hover"][data-state="closed"]',
     # 会话列表项
     "session_item": '[data-testid="chat_list_thread_item"]',
     # 当前激活会话
@@ -163,11 +165,8 @@ class DoubaoAdapter(BaseLLMAdapter):
 
     async def _get_last_response(self) -> str:
         """获取最后一条 AI 回复文本"""
-        items = self.page.locator(SELECTORS["response"])
-        count = await items.count()
-        if count == 0:
-            return ""
-        return (await items.nth(count - 1).inner_text()).strip()
+        last_el = self.page.locator('div[data-message-id]').last
+        return (await last_el.inner_text()).strip()
 
     async def new_chat(self) -> "DoubaoAdapter":
         """点击新建对话"""
