@@ -32,11 +32,10 @@ app = FastAPI(
 def register_routers(fastapi_app: FastAPI):
     """注册所有路由到 FastAPI 应用"""
     from api.http.chat_controller import chat_router
+    from api.http.video_controller import video_router
 
     fastapi_app.include_router(chat_router)
-
-    # 如果有其他路由，在这里继续注册
-    # fastapi_app.include_router(other_router)
+    fastapi_app.include_router(video_router)
 
 
 # 初始化路由
